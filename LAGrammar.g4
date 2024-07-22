@@ -56,24 +56,6 @@ cmd_para: 'para' identificador '<-' expressao 'ate' expressao ('passo' expressao
 
 retorno: 'retorne' expressao;
 
-// expressao: operacao
-//          | mensagem_literal
-//          | literal
-//          | termo (( '+' | '-' ) termo)*
-//          | NUM_INT
-//          | NUM_REAL
-//          | IDENT
-//          | identificador
-//          | ponteiro
-//          |'-' identificador
-//          | endereco
-//          | chamada_funcao_cmd
-//          | chamada_tipo_cdm
-//          | chamada_procedimento_cmd
-//          | '(' expressao ')'
-//          | expressao ('+'|'-'|'*'|'/'|'>'|'<'|'>='|'<='|'<>'|'=') expressao
-//          | expressao logico expressao;
-
 expressao
     : termo relacional expressao
     | expressao logico expressao logico expressao   
@@ -86,24 +68,8 @@ expressao
     | termo logico termo
     | '(' expressao ')'
     | expressao ('+'|'-'|'*'|'/'|'>'|'<'|'>='|'<='|'<>'|'=') expressao
-    // | expressao ('+'|'-'|'*'|'/') expressao
     | termo
     ;
-
-// expressao
-//     : termo relacional expressao
-//     | termo ( ('+' | '-' | '*' | '/') termo )*
-//     | termo ( '+' | '-' ) termo
-//     | termo ('*' | '/' ) termo
-//     | expressao logico expressao (logico expressao)*           
-//     | expressao relacional expressao             
-//     | expressao ('+' | '-' | '*' | '/') expressao  
-//     | '(' expressao ')'                        
-//     | termo  
-//     | termo relacional termo
-//     | termo logico termo                                 
-//     ;
-
 
 relacional
     : '>' | '<' | '>=' | '<=' | '<>' | '='
@@ -137,22 +103,10 @@ tipo: 'literal'
     | 'endereco'
     | IDENT;
 
-// operacao: operando (operador operando)* ;
-
-// operando: '(' operacao ')' 
-//         | identificador 
-//         | NUM_INT 
-//         | NUM_REAL 
-//         ;
-
 operacao
     : identificador
     | identificador '(' expressao ')'
     ;
-
-// termo
-//     : fator (( '*' | '/' ) fator)*
-//     ;
 
 fator
     : IDENT
